@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_detail_search"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.sharonlxr.thoughtjot.DetailSearchActivity">
+
+
+    <TextView
+        android:text="From"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/fromText"
+        android:textAlignment="center"
+        android:textSize="18sp" />
+
+    <TextView
+        android:text="/"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:id="@+id/textView18"
+        android:textSize="18sp"
+        android:layout_below="@+id/fromText"
+        android:layout_toStartOf="@+id/fromText" />
+
+    <TextView
+        android:text="/"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView18"
+        android:layout_toEndOf="@+id/fromText"
+        android:id="@+id/textView19"
+        android:textSize="18sp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:ems="2"
+        android:layout_alignTop="@+id/textView18"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/frommonth" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:ems="4"
+        android:layout_alignTop="@+id/textView18"
+        android:layout_alignEnd="@+id/textView18"
+        android:id="@+id/fromyear" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:ems="2"
+        android:id="@+id/fromdate"
+        android:layout_alignTop="@+id/textView19"
+        android:layout_toEndOf="@+id/textView19" />
+
+    <TextView
+        android:text="TO"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView24"
+        android:textSize="18sp"
+        android:textAlignment="center"
+        android:layout_below="@+id/frommonth"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="/"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:id="@+id/textView25"
+        android:textSize="18sp"
+        android:layout_below="@+id/textView24"
+        android:layout_alignEnd="@+id/fromyear" />
+
+    <TextView
+        android:text="/"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView25"
+        android:layout_alignStart="@+id/textView19"
+        android:id="@+id/textView27"
+        android:textSize="18sp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:ems="2"
+        android:id="@+id/tomonth"
+        android:layout_below="@+id/textView24"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:ems="4"
+        android:layout_alignTop="@+id/tomonth"
+        android:layout_toStartOf="@+id/textView25"
+        android:id="@+id/toyear" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:ems="2"
+        android:id="@+id/todate"
+        android:layout_alignBaseline="@+id/tomonth"
+        android:layout_alignBottom="@+id/tomonth"
+        android:layout_toEndOf="@+id/textView27" />
+
+    <TextView
+        android:text="tags"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tomonth"
+        android:id="@+id/tagstext"
+        android:textSize="18sp"
+        android:textAlignment="center"
+        android:layout_toStartOf="@+id/textView27" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Seperated by ;"
+        android:ems="10"
+        android:layout_below="@+id/tagstext"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/tagsinput"
+        android:textAlignment="center" />
+
+    <TextView
+        android:text="KEYWORDS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView29"
+        android:textSize="18sp"
+        android:layout_below="@+id/tagsinput"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Seperated by ;"
+        android:ems="10"
+        android:layout_below="@+id/textView29"
+        android:layout_alignStart="@+id/fromyear"
+        android:id="@+id/keyinput"
+        android:textAlignment="center" />
+
+    <RadioButton
+        android:text="Title Only"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/keyinput"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/titleonly" />
+
+    <Button
+        android:text="Search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/titleonly"
+        android:layout_alignEnd="@+id/textView29"
+        android:id="@+id/deSearchButton" />
+
+
+</RelativeLayout>
