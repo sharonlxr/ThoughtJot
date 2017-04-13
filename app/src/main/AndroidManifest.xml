@@ -21,6 +21,8 @@
 
         <uses-permission android:name="android.permission.INTERNET" />
 
+        <activity android:name=".displayItemActivity" />
+        <activity android:name=".EditActivity"></activity>
     </application>
 
 </manifest>

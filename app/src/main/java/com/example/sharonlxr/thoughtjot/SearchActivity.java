@@ -35,12 +35,14 @@ public class SearchActivity extends AppCompatActivity {
         maxMonth = month;
         maxYear = year;
         updateCal();
+
         cal.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(CalendarView calendarView, int i, int i1, int i2) {
                 Intent newIntent = new Intent(SearchActivity.this,ListActivity.class);
                 newIntent.putExtra(MODE,DATEMODE);
                 newIntent.putExtra(DATE,i+"/"+i1+"/"+i2);
+                System.out.println("Debug" +i2);
                 startActivity(newIntent);
             }
         });
@@ -89,6 +91,7 @@ public class SearchActivity extends AppCompatActivity {
 
         Button next = (Button)findViewById(R.id.next);
         next.setVisibility(View.INVISIBLE);
+
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -120,6 +123,12 @@ public class SearchActivity extends AppCompatActivity {
             daysInMonth =calendar.getTimeInMillis();
 
             cal.setMinDate(daysInMonth);
+            calendar = Calendar.getInstance();
+            calendar.add(Calendar.DATE,1);
+            daysInMonth = calendar.getTimeInMillis();
+            cal.setMaxDate(daysInMonth);
+
+
             return;
 
         }
@@ -128,9 +137,14 @@ public class SearchActivity extends AppCompatActivity {
         calendar.set(Calendar.YEAR,year);
         calendar.set(Calendar.MONTH,month);
         calendar.set(Calendar.DAY_OF_MONTH,calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
+//        long daysInMonth = calendar.getTimeInMillis();
+//        calendar.add(Calendar.DATE,1);
         long daysInMonth = calendar.getTimeInMillis();
         cal.setMaxDate(daysInMonth);
+        calendar.set(Calendar.YEAR,year);
+        calendar.set(Calendar.MONTH,month);
         calendar.set(Calendar.DAY_OF_MONTH,calendar.getActualMinimum(Calendar.DAY_OF_MONTH));
+
         daysInMonth = calendar.getTimeInMillis();
         cal.setMinDate(daysInMonth);
     }
