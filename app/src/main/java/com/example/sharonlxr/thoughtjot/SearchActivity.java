@@ -114,6 +114,7 @@ public class SearchActivity extends AppCompatActivity {
 
         CalendarView cal = (CalendarView) findViewById(R.id.calendarView);
         Calendar calendar = Calendar.getInstance();
+//        cal.setSelected(false);
         Button next = (Button)findViewById(R.id.next);
         next.setVisibility(View.INVISIBLE);
         if(month==maxMonth&&year==maxYear){
@@ -139,9 +140,9 @@ public class SearchActivity extends AppCompatActivity {
         calendar.set(Calendar.MONTH,month);
         calendar.set(Calendar.DAY_OF_MONTH,calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
 //        long daysInMonth = calendar.getTimeInMillis();
-//        calendar.add(Calendar.DATE,1);
+        calendar.add(Calendar.DATE,1);
         long daysInMonth = calendar.getTimeInMillis();
-        cal.setMaxDate(daysInMonth);
+        cal.setMaxDate(daysInMonth+100);
         calendar.set(Calendar.YEAR,year);
         calendar.set(Calendar.MONTH,month);
         calendar.set(Calendar.DAY_OF_MONTH,calendar.getActualMinimum(Calendar.DAY_OF_MONTH));
