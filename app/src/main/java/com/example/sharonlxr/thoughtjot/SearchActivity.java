@@ -109,6 +109,7 @@ public class SearchActivity extends AppCompatActivity {
             }
         });
     }
+
     public void updateCal(){
 
         CalendarView cal = (CalendarView) findViewById(R.id.calendarView);
