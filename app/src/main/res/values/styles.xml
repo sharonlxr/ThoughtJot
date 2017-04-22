@@ -9,7 +9,7 @@
     </style>
 
     <style name="AppTheme.Button" parent="Widget.AppCompat.Button.Colored">
-        <item name="colorButtonNormal">#2196f3</item>
+        <item name="colorButtonNormal">#33b8e9</item>
         <item name="android:textColor">#ffffff</item>
     </style>
 
@@ -20,6 +20,7 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
