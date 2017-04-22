@@ -13,31 +13,37 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="text"
+        android:theme="@android:style/Theme.Holo.Light"
         android:ems="10"
         android:id="@+id/queryInput"
         android:layout_alignParentBottom="@+id/next"
         android:layout_alignParentStart="true"
         android:layout_toStartOf="@+id/search" />
 
+
     <Button
         android:id="@+id/next"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="next"
+        android:layout_width="40sp"
+        android:layout_height="40sp"
+        android:text="@string/next"
 
-        android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/calendarView"/>
+
+        android:layout_below="@+id/queryInput"
+        android:layout_marginTop="38dp"
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:id="@+id/pre"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="pre"
+        android:layout_width="40sp"
+        android:layout_height="40sp"
+        android:text="@string/pre"
 
-        android:layout_alignTop="@+id/calendarView"/>
+        android:layout_alignBaseline="@+id/next"
+        android:layout_alignBottom="@+id/next" />
 
     <Button
         android:text="Search"
+        android:theme="@style/AppTheme.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/queryInput"
@@ -46,6 +52,7 @@
 
     <Button
         android:text="Detailed Search"
+        android:theme="@style/AppTheme.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -57,6 +64,7 @@
 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+
 
         android:id="@+id/calendarView"
         android:layout_marginTop="64dp"

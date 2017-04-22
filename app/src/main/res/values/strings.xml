@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">ThoughtJot</string>
     <string name="title_activity_search">SearchActivity</string>
+    <string name="S"><![CDATA[<<]]></string>
+    <string name="pre"><![CDATA[<<]]></string>
+    <string name="next"><![CDATA[>>]]></string>
 </resources>

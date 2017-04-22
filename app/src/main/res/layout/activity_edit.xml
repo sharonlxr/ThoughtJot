@@ -10,46 +10,111 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.sharonlxr.thoughtjot.EditActivity">
 
-    <EditText
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="Name"
-        android:ems="10"
-        android:layout_marginTop="22dp"
-        android:id="@+id/editTitle"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/linearLayout1"
+        android:layout_marginTop="26px"
+        android:paddingTop="60px">
+
+    <TextView
+        android:text="Title: "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18px"
+        />
+
+
+        <EditText
+            android:id="@+id/editTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Name"
+            android:theme="@android:style/Theme.Holo.Light" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/linearLayout2"
+        android:layout_marginTop="40px"
+        android:layout_below="@+id/linearLayout1"
+        android:layout_alignStart="@+id/linearLayout1">
+
+
+        <TextView
+            android:text="Main Text: "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18px"
+            />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:theme="@android:style/Theme.Holo.Light"
         android:inputType="textMultiLine"
         android:ems="10"
-        android:layout_marginTop="14dp"
         android:id="@+id/cont"
-        android:layout_below="@+id/editTitle"
-        android:layout_alignStart="@+id/editTitle" />
+        android:layout_below="@+id/linearLayout1"
+        android:layout_alignEnd="@+id/linearLayout1" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/linearLayout3"
+        android:layout_marginTop="40px"
+        android:layout_below="@+id/linearLayout2">
+
+
+        <TextView
+            android:text="Tags: "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:textSize="18px"
+            />
+
+
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/textinputborder"
+        android:minHeight="40dp"
         android:inputType="textPersonName"
         android:text="Name"
         android:ems="10"
-        android:layout_below="@+id/cont"
-        android:layout_alignStart="@+id/cont"
-        android:layout_marginTop="112dp"
+        android:layout_below="@+id/linearLayout2"
+        android:layout_alignStart="@+id/linearLayout2"
+
         android:id="@+id/editTags" />
+
+    </LinearLayout>
 
     <Button
         android:text="save"
+        android:theme="@style/AppTheme.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/editTitle"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="55dp"
-        android:id="@+id/save" />
+        android:id="@+id/save"
+        android:layout_below="@+id/linearLayout3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="91dp" />
 
 
 </RelativeLayout>

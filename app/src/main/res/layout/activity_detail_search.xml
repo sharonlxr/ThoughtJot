@@ -13,6 +13,7 @@
 
     <TextView
         android:text="From"
+        android:layout_marginTop="16px"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -42,6 +43,7 @@
 
     <EditText
         android:layout_width="wrap_content"
+        android:theme="@android:style/Theme.Holo.Light"
         android:layout_height="wrap_content"
         android:inputType="date"
         android:ems="2"
@@ -51,6 +53,7 @@
 
     <EditText
         android:layout_width="wrap_content"
+        android:theme="@android:style/Theme.Holo.Light"
         android:layout_height="wrap_content"
         android:inputType="date"
         android:ems="4"
@@ -60,6 +63,7 @@
 
     <EditText
         android:layout_width="wrap_content"
+        android:theme="@android:style/Theme.Holo.Light"
         android:layout_height="wrap_content"
         android:inputType="date"
         android:ems="2"
@@ -68,7 +72,8 @@
         android:layout_toEndOf="@+id/textView19" />
 
     <TextView
-        android:text="TO"
+        android:text="To"
+        android:layout_marginTop="16px"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView24"
@@ -98,6 +103,7 @@
 
     <EditText
         android:layout_width="wrap_content"
+        android:theme="@android:style/Theme.Holo.Light"
         android:layout_height="wrap_content"
         android:inputType="date"
         android:ems="2"
@@ -107,6 +113,7 @@
 
     <EditText
         android:layout_width="wrap_content"
+        android:theme="@android:style/Theme.Holo.Light"
         android:layout_height="wrap_content"
         android:inputType="date"
         android:ems="4"
@@ -116,6 +123,7 @@
 
     <EditText
         android:layout_width="wrap_content"
+        android:theme="@android:style/Theme.Holo.Light"
         android:layout_height="wrap_content"
         android:inputType="date"
         android:ems="2"
@@ -125,7 +133,9 @@
         android:layout_toEndOf="@+id/textView27" />
 
     <TextView
-        android:text="tags"
+        android:text="Tags"
+        android:layout_marginTop="16px"
+        android:layout_marginBottom="16px"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tomonth"
@@ -135,8 +145,11 @@
         android:layout_toStartOf="@+id/textView27" />
 
     <EditText
+
+        android:background="@drawable/textinputborder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:minHeight="40dp"
         android:inputType="textPersonName"
         android:text="Seperated by ;"
         android:ems="10"
@@ -146,7 +159,9 @@
         android:textAlignment="center" />
 
     <TextView
-        android:text="KEYWORDS"
+        android:text="Keywords"
+        android:layout_marginTop="16px"
+        android:layout_marginBottom="16px"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView29"
@@ -155,8 +170,10 @@
         android:layout_centerHorizontal="true" />
 
     <EditText
+        android:background="@drawable/textinputborder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:minHeight="40dp"
         android:inputType="textPersonName"
         android:text="Seperated by ;"
         android:ems="10"
@@ -167,6 +184,7 @@
 
     <RadioButton
         android:text="Title Only"
+        android:theme="@android:style/Theme.Holo.Light"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/keyinput"
@@ -175,6 +193,8 @@
 
     <Button
         android:text="Search"
+        android:theme="@style/AppTheme.Button"
+        android:layout_marginTop="24px"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/titleonly"
