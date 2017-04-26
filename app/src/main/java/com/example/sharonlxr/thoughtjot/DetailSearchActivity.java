@@ -112,6 +112,8 @@ public class DetailSearchActivity extends AppCompatActivity {
                 String toyear = toy.getText().toString().trim();
                 String tomonth = tom.getText().toString().trim();
                 String todate = tod.getText().toString().trim();
+                String fromSt= fromyear+"/"+frommonth+"/"+fromdate;
+                String toSt = toyear+"/"+tomonth+"/"+todate;
                 boolean allempty = fromyear.isEmpty()&&frommonth.isEmpty()&&fromdate.isEmpty()
                         &&toyear.isEmpty()&&tomonth.isEmpty()&&todate.isEmpty();
                 boolean anyempty = fromyear.isEmpty()||frommonth.isEmpty()||fromdate.isEmpty()
@@ -151,6 +153,7 @@ public class DetailSearchActivity extends AppCompatActivity {
                 Intent newIntent = new Intent(DetailSearchActivity.this,ListActivity.class);
                 newIntent.putExtra(MODE,DETAILMODE);
                 if(range){
+                    System.out.println("inner  "+fromSt+toSt);
                     newIntent.putExtra(RANGEN,ENABLE);
                     newIntent.putExtra(START,fromSt);
                     newIntent.putExtra(END,toSt);

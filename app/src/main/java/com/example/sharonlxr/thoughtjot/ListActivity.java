@@ -3,6 +3,7 @@ package com.example.sharonlxr.thoughtjot;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.provider.Settings;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -84,7 +85,7 @@ public class ListActivity extends AppCompatActivity {
         Intent it = getIntent();
         int mode = it.getIntExtra(MODE,-1);
         dbTask dbt = new dbTask(getApplicationContext(),this);
-        System.out.println("Debug "+mode);
+//        System.out.println("Debug "+mode);
         switch (mode){
             case DATEMODE:
                 System.out.println("date");
@@ -138,6 +139,7 @@ public class ListActivity extends AppCompatActivity {
                             dbt.execute(input);
 
                         }else{
+                            System.out.println(st+end);
                             input = new String[]{DATERANGE,st,end};
                             dbt.execute(input);
 
@@ -231,45 +233,45 @@ public class ListActivity extends AppCompatActivity {
 
 
 
-        }
-        if(false) {
-            int test = it.getIntExtra(MODE, -1);
-            final ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
-            HashMap<String, String> temp1 = new HashMap<String, String>();
-            temp1.put(FIRST_COLUMN, "Title");
-            temp1.put(SECOND_COLUMN, "Time");
-            temp1.put(THIRD_COLUMN, "Content");
-            temp1.put(FOURTH_COLUMN, "Tags");
-            list.add(temp1);
-            HashMap<String, String> temp = new HashMap<String, String>();
-            temp.put(FIRST_COLUMN, "Good morning");
-            temp.put(SECOND_COLUMN, "2017/03/01");
-            temp.put(THIRD_COLUMN, "I am happy");
-            temp.put(FOURTH_COLUMN, "Happy");
-            list.add(temp);
-
-            ListView lv = (ListView) findViewById(R.id.list);
-            ListViewAdapter adapter = new ListViewAdapter(this, list);
-            lv.setAdapter(adapter);
-            lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    System.out.println("debug " + i);
-                    if (i == 0) {
-                        return;
-                    }
-                    HashMap<String, String> target = list.get(i);
-                    System.out.println(i);
-                    Intent it = new Intent((ListActivity.this), displayItemActivity.class);
-                    it.putExtra(FIRST_COLUMN, target.get(FIRST_COLUMN));
-                    it.putExtra(SECOND_COLUMN, target.get(SECOND_COLUMN));
-                    it.putExtra(THIRD_COLUMN, target.get(THIRD_COLUMN));
-                    it.putExtra(FOURTH_COLUMN, target.get((FOURTH_COLUMN)));
-                    startActivity(it);
-
-                }
-            });
-        }
+//        }
+//        if(false) {
+//            int test = it.getIntExtra(MODE, -1);
+//            final ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
+//            HashMap<String, String> temp1 = new HashMap<String, String>();
+//            temp1.put(FIRST_COLUMN, "Title");
+//            temp1.put(SECOND_COLUMN, "Time");
+//            temp1.put(THIRD_COLUMN, "Content");
+//            temp1.put(FOURTH_COLUMN, "Tags");
+//            list.add(temp1);
+//            HashMap<String, String> temp = new HashMap<String, String>();
+//            temp.put(FIRST_COLUMN, "Good morning");
+//            temp.put(SECOND_COLUMN, "2017/03/01");
+//            temp.put(THIRD_COLUMN, "I am happy");
+//            temp.put(FOURTH_COLUMN, "Happy");
+//            list.add(temp);
+//
+//            ListView lv = (ListView) findViewById(R.id.list);
+//            ListViewAdapter adapter = new ListViewAdapter(this, list);
+//            lv.setAdapter(adapter);
+//            lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//                @Override
+//                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                    System.out.println("debug " + i);
+//                    if (i == 0) {
+//                        return;
+//                    }
+//                    HashMap<String, String> target = list.get(i);
+//                    System.out.println(i);
+//                    Intent it = new Intent((ListActivity.this), displayItemActivity.class);
+//                    it.putExtra(FIRST_COLUMN, target.get(FIRST_COLUMN));
+//                    it.putExtra(SECOND_COLUMN, target.get(SECOND_COLUMN));
+//                    it.putExtra(THIRD_COLUMN, target.get(THIRD_COLUMN));
+//                    it.putExtra(FOURTH_COLUMN, target.get((FOURTH_COLUMN)));
+//                    startActivity(it);
+//
+//                }
+//            });
+//        }
 //        if(test==-1){
 //        tv.setText("not found");
 //        }else{
@@ -523,4 +525,5 @@ public class ListActivity extends AppCompatActivity {
 //        protected void onProgressUpdate(Void... values) {}
 //
 //    }
+    }
 }

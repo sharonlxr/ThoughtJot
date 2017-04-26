@@ -32,11 +32,8 @@ public class MainActivity extends AppCompatActivity {
 //        new dbHelper(getApplicationContext());
 //        dbTask db = new dbTask(getApplicationContext());
 //        db.execute(new String[]{});
-        Calendar cl = Calendar.getInstance();
-        cl.setTimeInMillis(1493154983853L);
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd' 'HH:mm");
-        String timest = df.format(cl.getTime());
-        System.out.println("Example "+timest);
+//        testTask ts = new testTask(getApplicationContext());
+//        ts.execute();
 
         ActionBar mActionBar = getSupportActionBar();
         mActionBar.setDisplayShowHomeEnabled(false);
@@ -48,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         mTitleTextView.setText("ThoughtJot");
         mActionBar.setCustomView(mCustomView);
         mActionBar.setDisplayShowCustomEnabled(true);
-        new testTask();
+
 
 //        ImageButton imageButton = (ImageButton) mCustomView
 //                .findViewById(R.id.imageButton);

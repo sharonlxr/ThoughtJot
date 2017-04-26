@@ -10,6 +10,7 @@ import android.provider.CalendarContract;
 import android.provider.Settings;
 
 import com.amazonaws.auth.CognitoCachingCredentialsProvider;
+import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
@@ -23,6 +24,7 @@ import com.amazonaws.services.dynamodbv2.model.QueryRequest;
 import com.amazonaws.services.dynamodbv2.model.QueryResult;
 import com.amazonaws.services.dynamodbv2.model.ScanRequest;
 import com.amazonaws.services.dynamodbv2.model.ScanResult;
+
 
 import org.w3c.dom.Attr;
 
@@ -64,6 +66,7 @@ public class dbHelper {
     public dbHelper(Context ct) {
         context = ct;
 //        String poorId = "us-east-1_msv738quu";
+        System.out.println("Create");
         String access_id_key="AKIAIE57ZEWULGAK4IUA";
         String access_key = "9ukYEQzb7VrpAvtmmDC1iZ9Lp3ITpsDK6m5dbGkr";
         BasicAWSCredentials bc = new BasicAWSCredentials(access_id_key,access_key);
@@ -73,7 +76,9 @@ public class dbHelper {
 
 //        CognitoCachingCredentialsProvider credentialsProvider = new CognitoCachingCredentialsProvider(ct,poorId, Regions.US_EAST_1);
         ddbClient = new AmazonDynamoDBClient(bc);
-        System.out.println(ddbClient.describeTable(tname));
+        ddbClient.setRegion(Region.getRegion(Regions.US_EAST_1));
+        System.out.println(ddbClient.listTables().getTableNames());
+//        System.out.println(ddbClient.describeTable(tname));
 
 //        AmazonDynamoDB client = new AmazonDynamoDBClient(bc);
 
@@ -81,14 +86,23 @@ public class dbHelper {
     public ArrayList<Map<String,AttributeValue>> searchByTitle(String title){
         System.out.println(title);
         Map<String,AttributeValue> mp = new HashMap<String, AttributeValue>();
-        mp.put("Title",new AttributeValue(title));
+        mp.put("Title",new AttributeValue().withS(title));
 
-        GetItemResult re =  ddbClient.getItem("Entries",mp);
+//        GetItemResult re =  ddbClient.getItem("Entries",mp);
+        Condition cd = new Condition().withComparisonOperator(ComparisonOperator.EQ).withAttributeValueList(new AttributeValue().withS(title));
+        HashMap<String,Condition> conds = new HashMap<>();
+        conds.put("Title",cd);
 
-        Map<String,AttributeValue> remp = re.getItem();
+        ScanRequest sr= new ScanRequest().withTableName(tname).withScanFilter(conds);
 
+        ScanResult res = ddbClient.scan(sr);
         ArrayList<Map<String,AttributeValue>> re2 = new ArrayList<Map<String,AttributeValue>>();
+
+        for(Map<String, AttributeValue> remp : res.getItems()){
+
+
                 re2.add(remp);
+        }
         return re2;
 
     }
@@ -108,12 +122,14 @@ public class dbHelper {
         String[] tgs =tag.split(";");
         ArrayList<Map<String,AttributeValue>> re = new ArrayList<>();
         for(String tg:tgs){
-
-        Condition cd = new Condition().withComparisonOperator(ComparisonOperator.CONTAINS).withAttributeValueList(new AttributeValue().withS(tg));
+            System.out.println(tg);
+            Condition cd = new Condition().withComparisonOperator(ComparisonOperator.CONTAINS).withAttributeValueList(new AttributeValue().withS(tg));
             HashMap<String,Condition> conds = new HashMap<>();
             conds.put("Tags",cd);
-            QueryRequest queryRequest = new QueryRequest().withTableName(tname).withKeyConditions(conds);
-            QueryResult result = ddbClient.query(queryRequest);
+
+            ScanRequest sr= new ScanRequest().withTableName(tname).withScanFilter(conds);
+
+            ScanResult result = ddbClient.scan(sr);
             for (Map<String, AttributeValue> item : result.getItems()) {
 
                 if(!re.contains(item)){
@@ -272,9 +288,9 @@ public class dbHelper {
 //        ddbClient.query();
         String st = String.valueOf( cl.getTimeInMillis());
         String end = String.valueOf(cl2.getTimeInMillis());
-        AttributeValue ast = new AttributeValue().withN(String.valueOf(st));
-        ast.setN(end);
-        AttributeValue est = new AttributeValue().withN(String.valueOf(end));
+        AttributeValue ast = new AttributeValue().withN(st);
+//        ast.setN(end);
+        AttributeValue est = new AttributeValue().withN(end);
         System.out.println("start "+ast.toString()+" end "+est.toString());
 
 //        vls.add(est);
@@ -282,7 +298,7 @@ public class dbHelper {
         Condition cd = new Condition().withComparisonOperator(ComparisonOperator.BETWEEN).withAttributeValueList(ast,est);
         HashMap<String,Condition> conds = new HashMap<>();
         conds.put("Date",cd);
-        ScanRequest sr= new ScanRequest().withTableName(tname);
+        ScanRequest sr= new ScanRequest().withTableName(tname).withScanFilter(conds);
         QueryRequest queryRequest = new QueryRequest().withTableName(tname);
 
         ArrayList<Map<String,AttributeValue>> re = new ArrayList<Map<String,AttributeValue>>(){};
@@ -318,19 +334,19 @@ public class dbHelper {
 //        ddbClient.query();
         String st = String.valueOf( cl.getTimeInMillis());
         String end = String.valueOf(cl2.getTimeInMillis());
-        AttributeValue ast = new AttributeValue().withN(String.valueOf(st));
-        AttributeValue est = new AttributeValue().withN(String.valueOf(end));
+        AttributeValue ast = new AttributeValue().withN(st);
+        AttributeValue est = new AttributeValue().withN(end);
         Collection<AttributeValue> vls = new ArrayList<AttributeValue>();
         vls.add(ast);
         vls.add(est);
         Condition cd = new Condition().withComparisonOperator(ComparisonOperator.BETWEEN).withAttributeValueList(vls);
         HashMap<String,Condition> conds = new HashMap<>();
-        conds.put("Time",cd);
-        QueryRequest queryRequest = new QueryRequest().withTableName(tname).withKeyConditions(conds);
+        conds.put("Date",cd);
+        ScanRequest queryRequest = new ScanRequest().withTableName(tname).withScanFilter(conds);
 
         ArrayList<Map<String,AttributeValue>> re = new ArrayList<Map<String,AttributeValue>>(){};
 
-        QueryResult result = ddbClient.query(queryRequest);
+        ScanResult result = ddbClient.scan(queryRequest);
         for (Map<String, AttributeValue> item : result.getItems()) {
             re.add(item);
         }

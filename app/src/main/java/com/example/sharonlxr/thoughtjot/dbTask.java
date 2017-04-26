@@ -62,10 +62,12 @@ public class dbTask extends AsyncTask<String, Void, ArrayList<HashMap<String,Str
     final String TITLETAG = "TITLETAG";
     Activity mActivity;
 //    ListViewAdapter listadp;
+//    dbHelper dbh;
     public dbTask (Context context, Activity ct){
         mActivity = ct;
 
         mContext = context;
+//        dbh = new dbHelper((mContext));
     }
     public ArrayList<HashMap<String,String>> convertToObject(List<Map<String,AttributeValue>> ins){
         ArrayList<HashMap<String,String>> re = new ArrayList<>();
@@ -74,15 +76,19 @@ public class dbTask extends AsyncTask<String, Void, ArrayList<HashMap<String,Str
         }
         for(Map<String,AttributeValue> mp:ins){
             HashMap<String,String> temp = new HashMap<>();
-            temp.put(FIRST_COLUMN,mp.get("Title").toString());
-            long time = new Long(mp.get("Date").toString());
+            temp.put(FIRST_COLUMN,mp.get("Title").getS().toString());
+            if(!mp.containsKey("Date")){
+
+            }else{
+            long time = new Long(mp.get("Date").getN().toString());
             Calendar calendar = Calendar.getInstance();
             calendar.setTimeInMillis(time);
+
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd' 'HH:mm");
             String timest = df.format(calendar.getTime());
-            temp.put(SECOND_COLUMN,timest);
-            temp.put(THIRD_COLUMN,mp.get("Entry").toString());
-            temp.put(FOURTH_COLUMN,mp.get("Tags").toString());
+            temp.put(SECOND_COLUMN,timest);}
+            temp.put(THIRD_COLUMN,mp.get("Entry").getS().toString());
+            temp.put(FOURTH_COLUMN,mp.get("Tags").getS().toString());
             re.add(temp);
 
 
@@ -124,7 +130,9 @@ public class dbTask extends AsyncTask<String, Void, ArrayList<HashMap<String,Str
         switch (params[0]){
 
             case DATEM:
+
                 String date = params[1];
+                System.out.println(date);
                 String[] seg = date.split("/");
                 if(seg.length!=3){
                     return new ArrayList<HashMap<String,String>>(){};
