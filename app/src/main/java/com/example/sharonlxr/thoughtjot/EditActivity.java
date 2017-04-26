@@ -11,10 +11,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class EditActivity extends AppCompatActivity {
+    final String PK = "PRIMARYKEYS";
+
     String FIRST_COLUMN = "TITLE";
-//    String SECOND_COLUMN = "DATE";
+    String SECOND_COLUMN = "DATE";
     String THIRD_COLUMN = "CONTENT";
     String FOURTH_COLUMN = "TAGS";
+
     String titt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,10 +39,14 @@ public class EditActivity extends AppCompatActivity {
 
 
         Intent it = getIntent();
+        String ts = it.getStringExtra(PK);
+//        System.out.println("in edit "+ts);
+        final long time = new Long(it.getStringExtra(PK));
         final String tt = it.getStringExtra(FIRST_COLUMN);
         titt=tt;
         final String ct = it.getStringExtra(THIRD_COLUMN);
         final String tg = it.getStringExtra(FOURTH_COLUMN);
+
         final EditText title = (EditText)findViewById(R.id.editTitle);
         final EditText cont = (EditText)findViewById(R.id.cont);
         final EditText tgs = (EditText)findViewById(R.id.editTags);
@@ -54,7 +61,7 @@ public class EditActivity extends AppCompatActivity {
                 String newt = title.getText().toString();
                 String newtag = tgs.getText().toString();
                 String newCont = cont.getText().toString();
-                ut.execute(new String[]{titt,newCont,newtag,newt,tg});
+                ut.execute(new String[]{titt,newCont,newtag,newt,tg,String.valueOf(time)});
             }
         });
 

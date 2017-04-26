@@ -45,6 +45,7 @@ public class dbTask extends AsyncTask<String, Void, ArrayList<HashMap<String,Str
     final String DATERANGE = "DATERANGE";
     final String TAGSM = "TAGS";
     final String KEYM = "KEYS";
+    final String PK = "PRIMARYKEYS";
 //    final String TITLEM = "TITLE";
 
 
@@ -81,6 +82,7 @@ public class dbTask extends AsyncTask<String, Void, ArrayList<HashMap<String,Str
 
             }else{
             long time = new Long(mp.get("Date").getN().toString());
+                temp.put(PK,String.valueOf(time));
             Calendar calendar = Calendar.getInstance();
             calendar.setTimeInMillis(time);
 
@@ -89,6 +91,7 @@ public class dbTask extends AsyncTask<String, Void, ArrayList<HashMap<String,Str
             temp.put(SECOND_COLUMN,timest);}
             temp.put(THIRD_COLUMN,mp.get("Entry").getS().toString());
             temp.put(FOURTH_COLUMN,mp.get("Tags").getS().toString());
+
             re.add(temp);
 
 
@@ -279,6 +282,9 @@ public class dbTask extends AsyncTask<String, Void, ArrayList<HashMap<String,Str
                 it.putExtra(SECOND_COLUMN, target.get(SECOND_COLUMN));
                 it.putExtra(THIRD_COLUMN, target.get(THIRD_COLUMN));
                 it.putExtra(FOURTH_COLUMN, target.get((FOURTH_COLUMN)));
+                String time = target.get(PK);
+//                System.out.println("set up"+ time);
+                it.putExtra(PK,time);
 
                 mActivity.startActivity(it);
 

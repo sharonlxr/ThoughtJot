@@ -14,6 +14,7 @@ public class displayItemActivity extends AppCompatActivity {
     String SECOND_COLUMN = "DATE";
     String THIRD_COLUMN = "CONTENT";
     String FOURTH_COLUMN = "TAGS";
+    final String PK = "PRIMARYKEYS";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +42,7 @@ public class displayItemActivity extends AppCompatActivity {
         final String tm = it.getStringExtra(SECOND_COLUMN);
         final String ct = it.getStringExtra(THIRD_COLUMN);
         final String tg = it.getStringExtra(FOURTH_COLUMN);
+        final String pks = it.getStringExtra(PK);
         title.setText(tt);
         date.setText(tm);
         cont.setText(ct);
@@ -53,6 +55,7 @@ public class displayItemActivity extends AppCompatActivity {
                 it.putExtra(FIRST_COLUMN,tt);
                 it.putExtra(THIRD_COLUMN,ct);
                 it.putExtra(FOURTH_COLUMN,tg);
+                it.putExtra(PK,pks);
                 startActivity(it);
 
             }

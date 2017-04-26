@@ -24,8 +24,11 @@ import java.util.List;
 import java.util.Map;
 
 public class ListActivity extends AppCompatActivity {
+    final String PK = "PRIMARYKEYS";
+
     int ENABLE  = 1 ;
     int UNABLE = 0;
+
     String KEYEN ="KEYSENABLE";
     String RANGEN = "RANGENBLE";
     String TAGEN ="TAGENBLE";

@@ -372,11 +372,11 @@ public class dbHelper {
         }
         return re;
     }
-    public void saveModifiedEntry(String title,String entry,String tags,String newTitle,String oldtags){
+    public void saveModifiedEntry(String title,String entry,String tags,String newTitle,String oldtags,long time){
 //        System.out.println(ddbClient.describeTable(tname).toString());
         HashMap<String,AttributeValue> keys= new HashMap<>();
-        keys.put("Title",new AttributeValue().withS(title));
-        keys.put("Tags",new AttributeValue().withS(oldtags));
+        keys.put("Date",new AttributeValue().withN(String.valueOf(time)));
+//        keys.put("Tags",new AttributeValue().withS(oldtags));
         HashMap<String,AttributeValueUpdate> updates= new HashMap<>();
         AttributeValueUpdate tg=  new AttributeValueUpdate();
         tg.setAction(AttributeAction.PUT);
@@ -389,7 +389,7 @@ public class dbHelper {
         AttributeValueUpdate tt=  new AttributeValueUpdate();
         tt.setAction(AttributeAction.PUT);
         tt.setValue(new AttributeValue().withS(newTitle));
-//        updates.put("Title",tt);
+        updates.put("Title",tt);
         ddbClient.updateItem(tname,keys,updates);
         System.out.println("Succeed");
 

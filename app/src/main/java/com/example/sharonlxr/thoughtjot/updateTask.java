@@ -17,7 +17,7 @@ public class updateTask extends AsyncTask<String, Void, String > {
     }
     protected String doInBackground(String... params) {
         dbHelper dbh = new dbHelper(mContext);
-        dbh.saveModifiedEntry(params[0],params[1],params[2],params[3],params[4]);
+        dbh.saveModifiedEntry(params[0],params[1],params[2],params[3],params[4],new Long(params[5]));
         return "updated";
     }
 }
