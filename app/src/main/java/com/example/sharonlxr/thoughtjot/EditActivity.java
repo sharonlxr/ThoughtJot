@@ -57,11 +57,12 @@ public class EditActivity extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                updateTask ut = new updateTask(getApplicationContext());
+                updateTask ut = new updateTask(getApplicationContext(),EditActivity.this);
                 String newt = title.getText().toString();
                 String newtag = tgs.getText().toString();
                 String newCont = cont.getText().toString();
                 ut.execute(new String[]{titt,newCont,newtag,newt,tg,String.valueOf(time)});
+
             }
         });
 
