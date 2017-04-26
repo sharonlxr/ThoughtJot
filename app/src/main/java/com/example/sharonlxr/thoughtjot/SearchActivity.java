@@ -60,7 +60,11 @@ public class SearchActivity extends AppCompatActivity {
                 Intent newIntent = new Intent(SearchActivity.this,ListActivity.class);
                 newIntent.putExtra(MODE,DATEMODE);
                 newIntent.putExtra(DATE,i+"/"+i1+"/"+i2);
-                System.out.println("Debug" +i2);
+
+
+//                dbTask dt = new dbTask(getApplicationContext());
+//                dt.doInBackground(new String[]{"DATE",String.valueOf(i),String.valueOf(i1),String.valueOf(i2)});
+//                System.out.println("Debug" +i2);
                 startActivity(newIntent);
             }
         });

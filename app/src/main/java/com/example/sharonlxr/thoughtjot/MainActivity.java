@@ -12,6 +12,9 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import static com.example.sharonlxr.thoughtjot.R.id.searchButton;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,6 +29,14 @@ public class MainActivity extends AppCompatActivity {
 //        getSupportActionBar().setDisplayShowHomeEnabled(true);
 //        getSupportActionBar().setLogo(R.drawable.logo);
 //        getSupportActionBar().setDisplayUseLogoEnabled(true);
+//        new dbHelper(getApplicationContext());
+//        dbTask db = new dbTask(getApplicationContext());
+//        db.execute(new String[]{});
+        Calendar cl = Calendar.getInstance();
+        cl.setTimeInMillis(1493154983853L);
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd' 'HH:mm");
+        String timest = df.format(cl.getTime());
+        System.out.println("Example "+timest);
 
         ActionBar mActionBar = getSupportActionBar();
         mActionBar.setDisplayShowHomeEnabled(false);
@@ -37,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         mTitleTextView.setText("ThoughtJot");
         mActionBar.setCustomView(mCustomView);
         mActionBar.setDisplayShowCustomEnabled(true);
+        new testTask();
 
 //        ImageButton imageButton = (ImageButton) mCustomView
 //                .findViewById(R.id.imageButton);

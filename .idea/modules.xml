@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ThoughtJot.iml" filepath="$PROJECT_DIR$/ThoughtJot.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CS160FinalProj.iml" filepath="$PROJECT_DIR$/CS160FinalProj.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
