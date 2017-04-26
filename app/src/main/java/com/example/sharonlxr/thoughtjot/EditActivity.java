@@ -15,6 +15,7 @@ public class EditActivity extends AppCompatActivity {
 //    String SECOND_COLUMN = "DATE";
     String THIRD_COLUMN = "CONTENT";
     String FOURTH_COLUMN = "TAGS";
+    String titt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,11 +37,12 @@ public class EditActivity extends AppCompatActivity {
 
         Intent it = getIntent();
         final String tt = it.getStringExtra(FIRST_COLUMN);
+        titt=tt;
         final String ct = it.getStringExtra(THIRD_COLUMN);
         final String tg = it.getStringExtra(FOURTH_COLUMN);
-        EditText title = (EditText)findViewById(R.id.editTitle);
-        EditText cont = (EditText)findViewById(R.id.cont);
-        EditText tgs = (EditText)findViewById(R.id.editTags);
+        final EditText title = (EditText)findViewById(R.id.editTitle);
+        final EditText cont = (EditText)findViewById(R.id.cont);
+        final EditText tgs = (EditText)findViewById(R.id.editTags);
         title.setText(tt);
         cont.setText(ct);
         tgs.setText(tg);
@@ -48,7 +50,11 @@ public class EditActivity extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                updateTask ut = new updateTask(getApplicationContext());
+                String newt = title.getText().toString();
+                String newtag = tgs.getText().toString();
+                String newCont = cont.getText().toString();
+                ut.execute(new String[]{titt,newCont,newtag,newt,tg});
             }
         });
 

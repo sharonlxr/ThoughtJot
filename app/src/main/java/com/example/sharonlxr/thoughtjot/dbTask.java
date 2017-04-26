@@ -123,7 +123,7 @@ public class dbTask extends AsyncTask<String, Void, ArrayList<HashMap<String,Str
     @Override
     protected ArrayList<HashMap<String,String>> doInBackground(String... params) {
         dbHelper dbh = new dbHelper((mContext));
-        System.out.println(dbh.ddbClient.describeTable("Entries"));
+        System.out.println("haha");
 
         List<Map<String,AttributeValue>> re;
 //        return re;

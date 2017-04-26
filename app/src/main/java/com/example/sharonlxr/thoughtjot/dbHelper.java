@@ -10,12 +10,15 @@ import android.provider.CalendarContract;
 import android.provider.Settings;
 
 import com.amazonaws.auth.CognitoCachingCredentialsProvider;
+import com.amazonaws.auth.policy.Action;
 import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
 import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.services.dynamodbv2.model.AttributeAction;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
+import com.amazonaws.services.dynamodbv2.model.AttributeValueUpdate;
 import com.amazonaws.services.dynamodbv2.model.ComparisonOperator;
 import com.amazonaws.services.dynamodbv2.model.Condition;
 import com.amazonaws.services.dynamodbv2.model.GetItemRequest;
@@ -77,7 +80,7 @@ public class dbHelper {
 //        CognitoCachingCredentialsProvider credentialsProvider = new CognitoCachingCredentialsProvider(ct,poorId, Regions.US_EAST_1);
         ddbClient = new AmazonDynamoDBClient(bc);
         ddbClient.setRegion(Region.getRegion(Regions.US_EAST_1));
-        System.out.println(ddbClient.listTables().getTableNames());
+//        System.out.println(ddbClient.listTables().getTableNames());
 //        System.out.println(ddbClient.describeTable(tname));
 
 //        AmazonDynamoDB client = new AmazonDynamoDBClient(bc);
@@ -261,7 +264,7 @@ public class dbHelper {
     public List<Map<String,AttributeValue>> searchByDate(int year,int month, int date){
 //        queryRequestion
         System.out.println("haha");
-//        System.out.println(ddbClient.describeTable(tname).toString());
+        System.out.println(ddbClient.describeTable(tname).toString());
         Calendar cl =  Calendar.getInstance();
         cl.set(Calendar.YEAR,year);
         cl.set(Calendar.MONTH,month);
@@ -280,17 +283,20 @@ public class dbHelper {
         cl2.set(Calendar.MILLISECOND,cl.getActualMaximum(Calendar.MILLISECOND));
         Date tm = cl.getTime();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-//        String time1 = df.format(tm);
-//        String time2 = df.format(cl2.getTime());
-//        System.out.println(time1);
-//        System.out.println(time2);
+        String time1 = df.format(tm);
+        String time2 = df.format(cl2.getTime());
+        System.out.println(time1);
+        System.out.println(time2);
 
 //        ddbClient.query();
         String st = String.valueOf( cl.getTimeInMillis());
         String end = String.valueOf(cl2.getTimeInMillis());
         AttributeValue ast = new AttributeValue().withN(st);
-//        ast.setN(end);
+
         AttributeValue est = new AttributeValue().withN(end);
+        Collection<AttributeValue> vls = new ArrayList<AttributeValue>();
+        vls.add(ast);
+        vls.add(est);
         System.out.println("start "+ast.toString()+" end "+est.toString());
 
 //        vls.add(est);
@@ -298,15 +304,25 @@ public class dbHelper {
         Condition cd = new Condition().withComparisonOperator(ComparisonOperator.BETWEEN).withAttributeValueList(ast,est);
         HashMap<String,Condition> conds = new HashMap<>();
         conds.put("Date",cd);
-        ScanRequest sr= new ScanRequest().withTableName(tname).withScanFilter(conds);
-        QueryRequest queryRequest = new QueryRequest().withTableName(tname);
+        ScanRequest sr= new ScanRequest().withTableName(tname);
+//        QueryRequest queryRequest = new QueryRequest().withTableName(tname);
 
         ArrayList<Map<String,AttributeValue>> re = new ArrayList<Map<String,AttributeValue>>(){};
 
 //        QueryResult result = ddbClient.query(queryRequest);
         ScanResult result = ddbClient.scan(sr);
         for (Map<String, AttributeValue> item : result.getItems()) {
-            re.add(item);
+            Long time = new Long(item.get("Date").getN());
+//            Calendar cl3 = Calendar.getInstance();
+//            cl3.setTimeInMillis(time);
+
+//            System.out.println(time <=cl2.getTimeInMillis());
+//            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+//            String time3 = df.format(cl3.getTime());
+//            System.out.println(time3);
+            if(time>=cl.getTimeInMillis()&&time<=cl2.getTimeInMillis()){
+                re.add(item);
+            }
         }
         return re;
     }
@@ -339,18 +355,45 @@ public class dbHelper {
         Collection<AttributeValue> vls = new ArrayList<AttributeValue>();
         vls.add(ast);
         vls.add(est);
-        Condition cd = new Condition().withComparisonOperator(ComparisonOperator.BETWEEN).withAttributeValueList(vls);
+        Condition cd = new Condition().withComparisonOperator(ComparisonOperator.BETWEEN).withAttributeValueList(ast,est);
         HashMap<String,Condition> conds = new HashMap<>();
         conds.put("Date",cd);
-        ScanRequest queryRequest = new ScanRequest().withTableName(tname).withScanFilter(conds);
+        ScanRequest queryRequest = new ScanRequest().withTableName(tname);
 
         ArrayList<Map<String,AttributeValue>> re = new ArrayList<Map<String,AttributeValue>>(){};
 
         ScanResult result = ddbClient.scan(queryRequest);
         for (Map<String, AttributeValue> item : result.getItems()) {
+//            System.out.println(item.toString());
+            Long time = new Long(item.get("Date").getN());
+            if(time>=cl.getTimeInMillis()&&time<=cl2.getTimeInMillis()){
             re.add(item);
+            }
         }
         return re;
+    }
+    public void saveModifiedEntry(String title,String entry,String tags,String newTitle,String oldtags){
+//        System.out.println(ddbClient.describeTable(tname).toString());
+        HashMap<String,AttributeValue> keys= new HashMap<>();
+        keys.put("Title",new AttributeValue().withS(title));
+        keys.put("Tags",new AttributeValue().withS(oldtags));
+        HashMap<String,AttributeValueUpdate> updates= new HashMap<>();
+        AttributeValueUpdate tg=  new AttributeValueUpdate();
+        tg.setAction(AttributeAction.PUT);
+        tg.setValue(new AttributeValue().withS(tags));
+        updates.put("Tags",tg);
+        AttributeValueUpdate et=  new AttributeValueUpdate();
+        et.setAction(AttributeAction.PUT);
+        et.setValue(new AttributeValue().withS(entry));
+        updates.put("Entry",et);
+        AttributeValueUpdate tt=  new AttributeValueUpdate();
+        tt.setAction(AttributeAction.PUT);
+        tt.setValue(new AttributeValue().withS(newTitle));
+//        updates.put("Title",tt);
+        ddbClient.updateItem(tname,keys,updates);
+        System.out.println("Succeed");
+
+
     }
 
 
