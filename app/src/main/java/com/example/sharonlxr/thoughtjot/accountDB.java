@@ -64,9 +64,11 @@ public class accountDB {
         ScanResult sr =  ddbClient.scan(queryRequest);
         System.out.println(ddbClient.listTables());
         if(sr.getCount()==0){
+            System.out.print("no account found");
             return  false;
         }
         if(sr.getCount()!=1){
+            System.out.println("too many account");
             return  false;
         }
         String pws = sr.getItems().get(0).get("password").getS().toString();
@@ -76,6 +78,7 @@ public class accountDB {
             return  true;
         }
 
+        System.out.println("wrong password "+pw+" "+pws);
 
         return false;
     }

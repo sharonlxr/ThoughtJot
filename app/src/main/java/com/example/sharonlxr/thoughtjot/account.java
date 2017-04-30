@@ -39,8 +39,10 @@ public class account extends AsyncTask<String, Void, Boolean > {
         accountDB db = new accountDB();
         switch ( md){
             case LOGIN:
+                System.out.println("login");
                 ID = new Integer(params[1]);
                 USERNAME = params[2];
+                System.out.println(ID+USERNAME);
                 return db.login(new Integer(params[1]),params[2],params[3]);
             case SIGNUP:
                 ID = new Integer(params[1]);
@@ -89,24 +91,58 @@ public class account extends AsyncTask<String, Void, Boolean > {
                         });
             AlertDialog alert = builder.create();
             alert.show();
-//                        .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-//                            public void onClick(DialogInterface dialog, int id) {
-//                                // User cancelled the dialog
-//                            }
-//                        });
+
 
                 return;
-//            }else{
-//            Intent it = new Intent(mActivity,MainActivity.class);
-//            it.putExtra("ID",ID);
-//            mCt.startActivity(it);
-//            }
 
         }else{
-//            Intent it = new Intent(mActivity,mActivity.cl);
-//            it.putExtra("ID",ID);
-//            mCt.startActivity(it);
-//            Toast.makeText()
+
+            if(md==LOGIN){
+                String string = "";
+                try{
+                    FileOutputStream fos = mCt.openFileOutput(FILENAME, Context.MODE_PRIVATE);
+                    fos.write(string.getBytes());
+                    fos.close();
+                    FileOutputStream fos1 = mCt.openFileOutput(USERFILE, Context.MODE_PRIVATE);
+                    fos1.write(USERNAME.getBytes());
+                    fos1.close();
+                    System.out.println("write to file");
+                }catch (Exception e){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
+                    builder.setMessage("Wrong combination of account and password")
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    // FIRE ZE MISSILES!
+
+                                }
+                            });
+                    AlertDialog alert = builder.create();
+                    alert.show();
+
+                }
+                AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
+                builder.setMessage("Wrong combination of account and password")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // FIRE ZE MISSILES!
+
+                            }
+                        });
+                AlertDialog alert = builder.create();
+                alert.show();
+            }else{
+                AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
+                builder.setMessage("Unable to create account")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // FIRE ZE MISSILES!
+
+                            }
+                        });
+                AlertDialog alert = builder.create();
+                alert.show();
+
+            }
 
         }
 
