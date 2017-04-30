@@ -26,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
     String FILENAME = "ID";
     String ID;
     String USERFILE ="USERNAME";
+    String IDIT = "ID";
+    String UN = "USERNAME";
     public String readUserName(){
         try {
             InputStream inputStream = this.getApplicationContext().openFileInput(USERFILE);
@@ -77,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         mActionBar.setDisplayShowTitleEnabled(false);
         LayoutInflater mInflater = LayoutInflater.from(this);
         TextView tv =(TextView) findViewById(R.id.welcomeMsg);
-        String userName = readUserName();
+        final String userName = readUserName();
         if(userName ==null){
             Intent it = new Intent(MainActivity.this,login.class);
             startActivity(it);
@@ -89,13 +91,6 @@ public class MainActivity extends AppCompatActivity {
         mActionBar.setCustomView(mCustomView);
         mActionBar.setDisplayShowCustomEnabled(true);
         Button ac = (Button)findViewById(R.id.acc);
-        ac.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent it = new Intent(MainActivity.this,login.class);
-                startActivity(it);
-            }
-        });
         try {
             InputStream inputStream = this.getApplicationContext().openFileInput(FILENAME);
 
@@ -120,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(it);
             }
         }
+
         catch (Exception e)
 
         {
@@ -127,6 +123,17 @@ public class MainActivity extends AppCompatActivity {
             startActivity(it);
 //        Log.e("login activity", "File not found: " + e.toString());
         }
+
+        ac.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent it = new Intent(MainActivity.this,accountManActivity.class);
+                it.putExtra(IDIT,ID);
+                it.putExtra(UN,userName);
+                startActivity(it);
+            }
+        });
 
 //        ImageButton imageButton = (ImageButton) mCustomView
 //                .findViewById(R.id.imageButton);

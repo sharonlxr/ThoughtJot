@@ -27,7 +27,8 @@
         <activity android:name=".displayItemActivity" />
         <activity android:name=".EditActivity" />
         <activity android:name=".login" />
-        <activity android:name=".SignupActivity"></activity>
+        <activity android:name=".SignupActivity" />
+        <activity android:name=".accountManActivity"></activity>
     </application>
 
 </manifest>
