@@ -25,6 +25,8 @@ import java.util.Map;
 
 public class ListActivity extends AppCompatActivity {
     final String PK = "PRIMARYKEYS";
+    String ID = "ID";
+    String id;
 
     int ENABLE  = 1 ;
     int UNABLE = 0;
@@ -86,6 +88,7 @@ public class ListActivity extends AppCompatActivity {
 
 
         Intent it = getIntent();
+        id = it.getStringExtra(ID);
         int mode = it.getIntExtra(MODE,-1);
         dbTask dbt = new dbTask(getApplicationContext(),this);
 //        System.out.println("Debug "+mode);

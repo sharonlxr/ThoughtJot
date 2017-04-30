@@ -11,7 +11,7 @@
     tools:context="com.example.sharonlxr.thoughtjot.login">
 
     <TextView
-        android:text="TextView"
+        android:text="User Name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -20,7 +20,7 @@
         android:id="@+id/userName" />
 
     <TextView
-        android:text="TextView"
+        android:text="Password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/userName"
@@ -29,7 +29,7 @@
         android:id="@+id/password" />
 
     <Button
-        android:text="Button"
+        android:text="login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/password"
@@ -41,7 +41,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="Name"
         android:ems="10"
         android:layout_below="@+id/userName"
         android:layout_centerHorizontal="true"
@@ -56,4 +55,13 @@
         android:layout_alignStart="@+id/user"
         android:layout_marginTop="11dp"
         android:id="@+id/pw" />
+
+    <Button
+        android:text="new user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/loginbutton"
+        android:layout_alignStart="@+id/loginbutton"
+        android:layout_marginTop="27dp"
+        android:id="@+id/signup" />
 </RelativeLayout>

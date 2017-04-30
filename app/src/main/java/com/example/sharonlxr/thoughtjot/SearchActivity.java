@@ -25,6 +25,8 @@ public class SearchActivity extends AppCompatActivity {
     String MODE = "MODE";
     String TAG = "TAGS";
     String DATE = "DATE";
+    String ID = "ID";
+    String id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +45,7 @@ public class SearchActivity extends AppCompatActivity {
         mActionBar.setCustomView(mCustomView);
         mActionBar.setDisplayShowCustomEnabled(true);
 
-
+        id = getIntent().getStringExtra(ID);
         CalendarView cal = (CalendarView) findViewById(R.id.calendarView);
         Calendar calendar = Calendar.getInstance();
 
@@ -60,6 +62,7 @@ public class SearchActivity extends AppCompatActivity {
                 Intent newIntent = new Intent(SearchActivity.this,ListActivity.class);
                 newIntent.putExtra(MODE,DATEMODE);
                 newIntent.putExtra(DATE,i+"/"+i1+"/"+i2);
+                newIntent.putExtra(ID,id);
 
 
 //                dbTask dt = new dbTask(getApplicationContext());
@@ -74,6 +77,7 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent newIntent = new Intent(SearchActivity.this,DetailSearchActivity.class);
+                newIntent.putExtra(ID,id);
                 startActivity(newIntent);
 //                return;
             }
@@ -91,6 +95,7 @@ public class SearchActivity extends AppCompatActivity {
                 }else{
                     newIntent.putExtra(MODE,TAGSMODE);
                     newIntent.putExtra(TAG,tag);
+                    newIntent.putExtra(ID,id);
                     startActivity(newIntent);
                 }
                 //move to search

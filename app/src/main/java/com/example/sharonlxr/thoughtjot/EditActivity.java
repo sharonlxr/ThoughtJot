@@ -10,6 +10,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
 public class EditActivity extends AppCompatActivity {
     final String PK = "PRIMARYKEYS";
 
@@ -17,8 +21,40 @@ public class EditActivity extends AppCompatActivity {
     String SECOND_COLUMN = "DATE";
     String THIRD_COLUMN = "CONTENT";
     String FOURTH_COLUMN = "TAGS";
-
     String titt;
+    String ID ="ID";
+    String FILENAME = "ID";
+
+    public String readLogID(){
+        try {
+        InputStream inputStream = this.getApplicationContext().openFileInput(FILENAME);
+
+        if ( inputStream != null ) {
+            InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            String receiveString = "";
+            StringBuilder stringBuilder = new StringBuilder();
+
+            while ( (receiveString = bufferedReader.readLine()) != null ) {
+                stringBuilder.append(receiveString);
+            }
+
+            inputStream.close();
+            ID = stringBuilder.toString();
+            if(ID.trim().isEmpty()||ID==null){
+                return null;
+            }
+            return ID;
+        }else{
+           return  null;
+        }
+    }
+    catch (Exception e)
+
+    {return  ID;
+//        Log.e("login activity", "File not found: " + e.toString());
+    }
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

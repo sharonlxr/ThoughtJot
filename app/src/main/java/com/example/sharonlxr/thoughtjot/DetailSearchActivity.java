@@ -40,6 +40,10 @@ public class DetailSearchActivity extends AppCompatActivity {
     int TAGSMODE = 2;
     int DATEMODE = 3;
 
+
+    String ID = "ID";
+    String id;
+
     public boolean checkValidRange(String fy,String fm, String fd, String ty,String tm,String td ){
         try {
             int y1 = new Integer(fy);
@@ -92,6 +96,7 @@ public class DetailSearchActivity extends AppCompatActivity {
         mTitleTextView.setText("ThoughtJot");
         mActionBar.setCustomView(mCustomView);
         mActionBar.setDisplayShowCustomEnabled(true);
+        id= getIntent().getStringExtra(ID);
 
 
         final RadioButton title = (RadioButton)findViewById(R.id.titleonly);
@@ -152,6 +157,7 @@ public class DetailSearchActivity extends AppCompatActivity {
                 }
                 Intent newIntent = new Intent(DetailSearchActivity.this,ListActivity.class);
                 newIntent.putExtra(MODE,DETAILMODE);
+                newIntent.putExtra(ID,id);
                 if(range){
                     System.out.println("inner  "+fromSt+toSt);
                     newIntent.putExtra(RANGEN,ENABLE);

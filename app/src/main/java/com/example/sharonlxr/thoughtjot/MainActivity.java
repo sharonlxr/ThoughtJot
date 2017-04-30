@@ -12,6 +12,9 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -20,7 +23,41 @@ import static com.example.sharonlxr.thoughtjot.R.id.searchButton;
 public class MainActivity extends AppCompatActivity {
 
 
+    String FILENAME = "ID";
+    String ID;
+    String USERFILE ="USERNAME";
+    public String readUserName(){
+        try {
+            InputStream inputStream = this.getApplicationContext().openFileInput(USERFILE);
 
+            if ( inputStream != null ) {
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                String receiveString = "";
+                StringBuilder stringBuilder = new StringBuilder();
+
+                while ( (receiveString = bufferedReader.readLine()) != null ) {
+                    stringBuilder.append(receiveString);
+                }
+
+                inputStream.close();
+                String nm = stringBuilder.toString();
+                if(nm.trim().isEmpty()||nm==null){
+                   return null;
+                }
+                System.out.println(nm);
+                return nm;
+            }else{
+                return  null;
+            }
+        }
+        catch (Exception e)
+
+        {
+           return null;
+//        Log.e("login activity", "File not found: " + e.toString());
+        }
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +76,13 @@ public class MainActivity extends AppCompatActivity {
         mActionBar.setDisplayShowHomeEnabled(false);
         mActionBar.setDisplayShowTitleEnabled(false);
         LayoutInflater mInflater = LayoutInflater.from(this);
-
+        TextView tv =(TextView) findViewById(R.id.welcomeMsg);
+        String userName = readUserName();
+        if(userName ==null){
+            Intent it = new Intent(MainActivity.this,login.class);
+            startActivity(it);
+        }
+        tv.setText("Welcome, "+ userName);
         View mCustomView = mInflater.inflate(R.layout.action_bar, null);
         TextView mTitleTextView = (TextView) mCustomView.findViewById(R.id.title_text);
         mTitleTextView.setText("ThoughtJot");
@@ -53,6 +96,37 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(it);
             }
         });
+        try {
+            InputStream inputStream = this.getApplicationContext().openFileInput(FILENAME);
+
+            if ( inputStream != null ) {
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                String receiveString = "";
+                StringBuilder stringBuilder = new StringBuilder();
+
+                while ( (receiveString = bufferedReader.readLine()) != null ) {
+                    stringBuilder.append(receiveString);
+                }
+
+                inputStream.close();
+                ID = stringBuilder.toString();
+                if(ID.trim().isEmpty()||ID==null){
+                    Intent it = new Intent(MainActivity.this,login.class);
+                    startActivity(it);
+                }
+            }else{
+                Intent it = new Intent(MainActivity.this,login.class);
+                startActivity(it);
+            }
+        }
+        catch (Exception e)
+
+        {
+            Intent it = new Intent(MainActivity.this,login.class);
+            startActivity(it);
+//        Log.e("login activity", "File not found: " + e.toString());
+        }
 
 //        ImageButton imageButton = (ImageButton) mCustomView
 //                .findViewById(R.id.imageButton);
@@ -95,6 +169,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent newIntent = new Intent(MainActivity.this,SearchActivity.class);
+                newIntent.putExtra("ID",ID);
+                System.out.println(ID);
                 startActivity(newIntent);
             }
         });

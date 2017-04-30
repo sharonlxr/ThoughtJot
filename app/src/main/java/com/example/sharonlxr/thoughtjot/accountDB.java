@@ -7,13 +7,21 @@ import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
 import com.amazonaws.services.dynamodbv2.model.AttributeAction;
+import com.amazonaws.services.dynamodbv2.model.AttributeDefinition;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.amazonaws.services.dynamodbv2.model.AttributeValueUpdate;
 import com.amazonaws.services.dynamodbv2.model.ComparisonOperator;
 import com.amazonaws.services.dynamodbv2.model.Condition;
+import com.amazonaws.services.dynamodbv2.model.CreateTableRequest;
+import com.amazonaws.services.dynamodbv2.model.CreateTableResult;
+import com.amazonaws.services.dynamodbv2.model.KeySchemaElement;
+import com.amazonaws.services.dynamodbv2.model.ProvisionedThroughput;
+import com.amazonaws.services.dynamodbv2.model.ScalarAttributeType;
 import com.amazonaws.services.dynamodbv2.model.ScanRequest;
 import com.amazonaws.services.dynamodbv2.model.ScanResult;
+import com.amazonaws.services.dynamodbv2.model.KeyType;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -47,13 +55,14 @@ public class accountDB {
 //        AmazonDynamoDB client = new AmazonDynamoDBClient(bc);
 
     }
-    public boolean login(int id, String pw){
+    public boolean login(int id, String userN,String pw){
         AttributeValue ast = new AttributeValue().withN(String.valueOf(id));
         Condition cd = new Condition().withComparisonOperator(ComparisonOperator.EQ).withAttributeValueList(ast);
         HashMap<String,Condition> conds = new HashMap<>();
         conds.put("ID",cd);
         ScanRequest queryRequest = new ScanRequest().withTableName(tname).withScanFilter(conds);
         ScanResult sr =  ddbClient.scan(queryRequest);
+        System.out.println(ddbClient.listTables());
         if(sr.getCount()==0){
             return  false;
         }
@@ -62,6 +71,8 @@ public class accountDB {
         }
         String pws = sr.getItems().get(0).get("password").getS().toString();
         if(pw.compareTo(pws)==0){
+            System.out.println("Match");
+
             return  true;
         }
 
@@ -92,11 +103,29 @@ public class accountDB {
         updates.put("password",pws);
 
         ddbClient.updateItem(tname,keys,updates);
+        createNewTable(id);
+
         return true;
 //        System.out.println("Succeed");
 
     }
+
     public void createNewTable(int id){
+        ArrayList<KeySchemaElement> keySchemas = new ArrayList<>();
+        KeySchemaElement pk = new KeySchemaElement("Date",KeyType.HASH);
+        AttributeDefinition pkd = new AttributeDefinition("Date", ScalarAttributeType.N);
+        ArrayList<AttributeDefinition> attrs = new ArrayList<>();
+        ProvisionedThroughput pv = new ProvisionedThroughput(Long.decode("15"),Long.decode("15"));
+        attrs.add(pkd);
+//        KeySchemaElement title = new KeySchemaElement("Title",KeyType.HASH);
+//        KeySchemaElement entry = new KeySchemaElement("Entry",KeyType.HASH);
+//        KeySchemaElement tags = new KeySchemaElement("Tags",KeyType.HASH);
+        keySchemas.add(pk);
+        CreateTableRequest cr = new CreateTableRequest(attrs,String.valueOf(id)+"ENtries",keySchemas,pv);
+        CreateTableResult re = ddbClient.createTable(cr);
+        System.out.println(re.getTableDescription());
+
+//        ddbClient.crea
 
     }
 }
