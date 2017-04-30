@@ -45,7 +45,14 @@ public class MainActivity extends AppCompatActivity {
         mTitleTextView.setText("ThoughtJot");
         mActionBar.setCustomView(mCustomView);
         mActionBar.setDisplayShowCustomEnabled(true);
-
+        Button ac = (Button)findViewById(R.id.acc);
+        ac.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent it = new Intent(MainActivity.this,login.class);
+                startActivity(it);
+            }
+        });
 
 //        ImageButton imageButton = (ImageButton) mCustomView
 //                .findViewById(R.id.imageButton);

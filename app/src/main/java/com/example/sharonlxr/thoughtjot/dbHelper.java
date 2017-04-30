@@ -86,6 +86,7 @@ public class dbHelper {
 //        AmazonDynamoDB client = new AmazonDynamoDBClient(bc);
 
     }
+
     public ArrayList<Map<String,AttributeValue>> searchByTitle(String title){
         System.out.println(title);
         Map<String,AttributeValue> mp = new HashMap<String, AttributeValue>();
@@ -291,9 +292,9 @@ public class dbHelper {
 //        ddbClient.query();
         String st = String.valueOf( cl.getTimeInMillis());
         String end = String.valueOf(cl2.getTimeInMillis());
-        AttributeValue ast = new AttributeValue().withN(st);
+        AttributeValue ast = new AttributeValue().withS(st);
 
-        AttributeValue est = new AttributeValue().withN(end);
+        AttributeValue est = new AttributeValue().withS(end);
         Collection<AttributeValue> vls = new ArrayList<AttributeValue>();
         vls.add(ast);
         vls.add(est);
@@ -311,6 +312,7 @@ public class dbHelper {
 
 //        QueryResult result = ddbClient.query(queryRequest);
         ScanResult result = ddbClient.scan(sr);
+        System.out.println(result.getCount());
         for (Map<String, AttributeValue> item : result.getItems()) {
             Long time = new Long(item.get("Date").getN());
 //            Calendar cl3 = Calendar.getInstance();
