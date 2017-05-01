@@ -32,7 +32,7 @@ import java.util.Map;
 public class accountDB {
     //
     AmazonDynamoDBClient ddbClient;
-//    Context context;
+    //    Context context;
     String tname = "Accounts";
     //    AmazonDynamoDB client;
     public accountDB() {
@@ -132,3 +132,4 @@ public class accountDB {
 
     }
 }
+

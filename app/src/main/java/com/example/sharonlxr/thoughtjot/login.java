@@ -1,11 +1,14 @@
 package com.example.sharonlxr.thoughtjot;
 
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -22,11 +25,23 @@ public class login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+//        ActionBar mActionBar = getSupportActionBar();
+//        mActionBar.setDisplayShowHomeEnabled(false);
+//        mActionBar.setDisplayShowTitleEnabled(false);
+//        LayoutInflater mInflater = LayoutInflater.from(this);
+//
+//        View mCustomView = mInflater.inflate(R.layout.action_bar, null);
+//        TextView mTitleTextView = (TextView) mCustomView.findViewById(R.id.title_text);
+//        mTitleTextView.setText("ThoughtJot");
+//        mActionBar.setCustomView(mCustomView);
+//        mActionBar.setDisplayShowCustomEnabled(true);
+
         Button login = (Button)findViewById(R.id.loginbutton);
         final EditText user= (EditText)findViewById(R.id.user);
         final EditText pw = (EditText)findViewById(R.id.pw);
         final account act = new account(this,getApplicationContext());
-        final Button signup = (Button) findViewById(R.id.signup);
+        final TextView signup = (TextView) findViewById(R.id.signup);
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

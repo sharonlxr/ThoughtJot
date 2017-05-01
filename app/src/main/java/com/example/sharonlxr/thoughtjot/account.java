@@ -34,7 +34,7 @@ public class account extends AsyncTask<String, Void, Boolean > {
     @Override
     protected Boolean doInBackground(String... params) {
 //        return true;
-       String mode =  params[0];
+        String mode =  params[0];
         md = new Integer(mode);
         accountDB db = new accountDB();
         switch ( md){
@@ -64,12 +64,12 @@ public class account extends AsyncTask<String, Void, Boolean > {
 
             String string = String.valueOf(ID);
             try{
-            FileOutputStream fos = mCt.openFileOutput(FILENAME, Context.MODE_PRIVATE);
-            fos.write(string.getBytes());
-            fos.close();
-            FileOutputStream fos1 = mCt.openFileOutput(USERFILE, Context.MODE_PRIVATE);
-            fos1.write(USERNAME.getBytes());
-            fos1.close();
+                FileOutputStream fos = mCt.openFileOutput(FILENAME, Context.MODE_PRIVATE);
+                fos.write(string.getBytes());
+                fos.close();
+                FileOutputStream fos1 = mCt.openFileOutput(USERFILE, Context.MODE_PRIVATE);
+                fos1.write(USERNAME.getBytes());
+                fos1.close();
                 System.out.println("write to file");
             }catch (Exception e){
 
@@ -79,21 +79,21 @@ public class account extends AsyncTask<String, Void, Boolean > {
             }
 //            if(md == SIGNUP){
 //            System.out.println("dialog "+ID);
-                AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
-                builder.setMessage("Please remember you id for Alexa, "+ID)
-                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                // FIRE ZE MISSILES!
-                                Intent it = new Intent(mActivity,MainActivity.class);
-                                it.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                mCt.startActivity(it);
-                            }
-                        });
+            AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
+            builder.setMessage("Please remember you id for Alexa, "+ID)
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            // FIRE ZE MISSILES!
+                            Intent it = new Intent(mActivity,MainActivity.class);
+                            it.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            mCt.startActivity(it);
+                        }
+                    });
             AlertDialog alert = builder.create();
             alert.show();
 
 
-                return;
+            return;
 
         }else{
 
@@ -148,3 +148,4 @@ public class account extends AsyncTask<String, Void, Boolean > {
 
     }
 }
+

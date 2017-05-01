@@ -1,59 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--xmlns:tools="http://schemas.android.com/tools"-->
+    <!--android:id="@+id/activity_signup"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:paddingBottom="@dimen/activity_vertical_margin"-->
+    <!--android:paddingLeft="@dimen/activity_horizontal_margin"-->
+    <!--android:paddingRight="@dimen/activity_horizontal_margin"-->
+    <!--android:paddingTop="@dimen/activity_vertical_margin"-->
+    <!--tools:context="com.example.sharonlxr.thoughtjot.SignupActivity">-->
+
+    <!--<EditText-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:inputType="textPersonName"-->
+        <!--android:ems="10"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_marginTop="106dp"-->
+        <!--android:id="@+id/usrName" />-->
+
+    <!--<EditText-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:inputType="textPassword"-->
+        <!--android:ems="10"-->
+        <!--android:layout_below="@+id/usrName"-->
+        <!--android:layout_alignStart="@+id/usrName"-->
+        <!--android:layout_marginTop="46dp"-->
+        <!--android:id="@+id/pwsu" />-->
+
+    <!--<Button-->
+        <!--android:text="Register"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@+id/pwsu"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_marginTop="60dp"-->
+        <!--android:id="@+id/signuobutton" />-->
+
+    <!--<TextView-->
+        <!--android:text="User Name"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_above="@+id/pwsu"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_marginBottom="46dp"-->
+        <!--android:id="@+id/tw1" />-->
+
+    <!--<TextView-->
+        <!--android:text="Password"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@+id/usrName"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_marginTop="21dp"-->
+        <!--android:id="@+id/textView2" />-->
+<!--</RelativeLayout>-->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_signup"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:layout_height="wrap_content"
+    android:paddingTop="56dp"
+    android:paddingLeft="24dp"
+    android:paddingRight="24dp"
+    android:background="@drawable/logobg2"
     tools:context="com.example.sharonlxr.thoughtjot.SignupActivity">
 
-    <EditText
+    <ImageView android:src="@drawable/logo"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="106dp"
-        android:id="@+id/usrName" />
+        android:layout_height="72dp"
+        android:layout_marginBottom="70dp"
+        android:layout_gravity="center_horizontal" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:layout_below="@+id/usrName"
-        android:layout_alignStart="@+id/usrName"
-        android:layout_marginTop="46dp"
-        android:id="@+id/pwsu" />
+    <!--  Name Label -->
+    <android.support.design.widget.TextInputLayout
+        android:textColorHint="#ffff"
 
-    <Button
-        android:text="Register"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/pwsu"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp"
-        android:id="@+id/signuobutton" />
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp">
+        <EditText android:id="@+id/usrName"
+            android:textColor="#ffff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:hint="User Name" />
+    </android.support.design.widget.TextInputLayout>
 
-    <TextView
-        android:text="User Name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/pwsu"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="46dp"
-        android:id="@+id/tw1" />
 
-    <TextView
-        android:text="Password"
-        android:layout_width="wrap_content"
+    <!-- Password Label -->
+    <android.support.design.widget.TextInputLayout
+        android:textColorHint="#ffff"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/usrName"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="21dp"
-        android:id="@+id/textView2" />
-</RelativeLayout>
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp">
+        <EditText android:id="@+id/pwsu"
+            android:textColor="#ffff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:hint="Password"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <!-- Signup Button -->
+    <android.support.v7.widget.AppCompatButton
+        android:theme="@style/AppTheme.Button"
+        android:id="@+id/signuobutton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="24dp"
+        android:padding="12dp"
+        android:text="Create Account"/>
+
+    <TextView android:id="@+id/link_login"
+        android:textColor="#ffff"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="Already a member? Login"
+        android:gravity="center"
+        android:textSize="16dip"/>
+
+</LinearLayout>

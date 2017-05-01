@@ -74,10 +74,20 @@ public class MainActivity extends AppCompatActivity {
 //        testTask ts = new testTask(getApplicationContext());
 //        ts.execute();
 
+
         ActionBar mActionBar = getSupportActionBar();
         mActionBar.setDisplayShowHomeEnabled(false);
         mActionBar.setDisplayShowTitleEnabled(false);
         LayoutInflater mInflater = LayoutInflater.from(this);
+
+        View mCustomView = mInflater.inflate(R.layout.action_bar, null);
+        TextView mTitleTextView = (TextView) mCustomView.findViewById(R.id.title_text);
+        mTitleTextView.setText("ThoughtJot");
+        mActionBar.setCustomView(mCustomView);
+        mActionBar.setDisplayShowCustomEnabled(true);
+
+
+
         TextView tv =(TextView) findViewById(R.id.welcomeMsg);
         final String userName = readUserName();
         if(userName ==null){
@@ -85,11 +95,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(it);
         }
         tv.setText("Welcome, "+ userName);
-        View mCustomView = mInflater.inflate(R.layout.action_bar, null);
-        TextView mTitleTextView = (TextView) mCustomView.findViewById(R.id.title_text);
-        mTitleTextView.setText("ThoughtJot");
-        mActionBar.setCustomView(mCustomView);
-        mActionBar.setDisplayShowCustomEnabled(true);
+
         Button ac = (Button)findViewById(R.id.acc);
         try {
             InputStream inputStream = this.getApplicationContext().openFileInput(FILENAME);
