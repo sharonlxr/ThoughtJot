@@ -8,6 +8,7 @@
     android:paddingLeft="64dp"
     android:paddingRight="64dp"
     android:paddingTop="64dp"
+    android:background="@drawable/main7"
     tools:context="com.example.sharonlxr.thoughtjot.SearchActivity">
     <EditText
         android:layout_width="wrap_content"
@@ -23,6 +24,7 @@
 
     <Button
         android:id="@+id/next"
+        android:theme="@style/AppTheme.Button"
         android:layout_width="40sp"
         android:layout_height="40sp"
         android:text="@string/next"
@@ -34,6 +36,7 @@
 
     <Button
         android:id="@+id/pre"
+        android:theme="@style/AppTheme.Button"
         android:layout_width="40sp"
         android:layout_height="40sp"
         android:text="@string/pre"

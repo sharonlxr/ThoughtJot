@@ -4,4 +4,7 @@
     <string name="S"><![CDATA[<<]]></string>
     <string name="pre"><![CDATA[<<]]></string>
     <string name="next"><![CDATA[>>]]></string>
+
+    <string name="font_name_fontawesome">fontawesome</string>
+    <string name="font_name_source_sans_pro">SourceSansPro</string>
 </resources>

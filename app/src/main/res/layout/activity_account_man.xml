@@ -1,41 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_account_man"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:layout_height="wrap_content"
+    android:paddingTop="56dp"
+    android:paddingLeft="24dp"
+    android:paddingRight="24dp"
+    android:background="@drawable/loginbg"
     tools:context="com.example.sharonlxr.thoughtjot.accountManActivity">
 
+
+    <ImageView android:src="@drawable/logo"
+        android:layout_width="wrap_content"
+        android:layout_height="72dp"
+        android:layout_marginBottom="70dp"
+        android:layout_gravity="center_horizontal" />
+
     <TextView
-        android:text="TextView"
+        android:text="Account Details"
+        android:textSize="50dp"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="81dp"
-        android:id="@+id/undisplay"
-        android:textSize="25sp" />
+        android:fontFamily="cursive"
+        android:layout_gravity="center"
+        android:textColor="#ffff"
+        />
 
     <TextView
         android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/undisplay"
-        android:layout_alignEnd="@+id/undisplay"
-        android:layout_marginTop="96dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="51dp"
+        android:id="@+id/undisplay"
+        android:textSize="25dp" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="26dp"
         android:id="@+id/IDdisplay"
-        android:textSize="25sp" />
+        android:textSize="25dp" />
 
     <Button
         android:text="log out"
+        android:theme="@style/AppTheme.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/IDdisplay"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="39dp"
-        android:id="@+id/signout" />
-</RelativeLayout>
+        android:layout_gravity="center"
+        android:layout_marginTop="66dp"
+        android:id="@+id/signout"
+        android:layout_centerVertical="true"
+        android:layout_alignEnd="@+id/IDdisplay" />
+</LinearLayout>
