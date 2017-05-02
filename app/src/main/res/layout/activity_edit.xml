@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="cursive"
         android:textStyle="bold"
-        android:textColor="#ffff"
+        android:textColor="#FFF54BCB"
         android:textSize="25dp"
         />
 
@@ -38,6 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
+            android:textColor="#ffff"
 
             android:ems="10"
             android:inputType="textPersonName"
@@ -62,15 +63,16 @@
             android:layout_height="wrap_content"
             android:fontFamily="cursive"
             android:textStyle="bold"
-            android:textColor="#ffff"
+            android:textColor="#FFF54BCB"
             android:textSize="25dp"
             />
 
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="273dp"
         android:layout_height="wrap_content"
         android:theme="@android:style/Theme.Holo.Light"
         android:inputType="textMultiLine"
+        android:textColor="#ffff"
         android:ems="10"
         android:id="@+id/cont"
         android:layout_below="@+id/linearLayout1"
@@ -96,7 +98,7 @@
 
             android:fontFamily="cursive"
             android:textStyle="bold"
-            android:textColor="#ffff"
+            android:textColor="#FFF54BCB"
             android:textSize="25dp"
             />
 
@@ -107,6 +109,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/textinputborder"
         android:minHeight="40dp"
+        android:textColor="#ffff"
         android:inputType="textPersonName"
         android:text="Name"
         android:ems="10"
