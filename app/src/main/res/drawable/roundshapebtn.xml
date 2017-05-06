@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+
+    <!--<corners android:radius="100dp"/> // if you want clear round shape then make radius size is half of your  button`s height.-->
+    <stroke android:color="#2f90d1" android:width="2dp"></stroke>
+    <solid android:color="#33b8e9"/> // Button Colour
+    <size android:width="160dp" android:height="160dp"></size>
+
+</shape>
